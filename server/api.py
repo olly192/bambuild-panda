@@ -3,8 +3,8 @@ import json
 from flask import Blueprint, request
 from flask_cors import cross_origin
 
-from app.app import db
-from app.models import Order
+from server.app import db
+from server.models import Order
 
 api = Blueprint('api', __name__)
 

@@ -30,22 +30,22 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__, instance_relative_config=False)
-    # Initialise app and database with config class
+    # Initialise server and database with config class
     app.config.from_object(Config)
     db.init_app(app)
 
     with app.app_context():
         # Import views
-        from app.views import views as view_routes
-        from app.auth import auth as auth_routes
-        from app.api import api as api_routes
+        from server.views import views as view_routes
+        from server.auth import auth as auth_routes
+        from server.api import api as api_routes
         # Register views
         app.register_blueprint(view_routes, url_prefix='/')
         app.register_blueprint(auth_routes, url_prefix='/')
         app.register_blueprint(api_routes, url_prefix='/api')
 
         # Import error pages
-        from app.error import error403, error404, error500
+        from server.error import error403, error404, error500
         app.register_error_handler(401, error403)
         app.register_error_handler(403, error403)
         app.register_error_handler(404, error404)
@@ -57,7 +57,7 @@ def create_app():
         cors = CORS(app)
 
         # Import user model and initialise login manager
-        from app.models import User
+        from server.models import User
         login_manager = LoginManager()
         login_manager.init_app(app)
 
