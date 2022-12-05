@@ -13,11 +13,10 @@ api = Blueprint('api', __name__)
 @api.route('/submit-order/<product_identifier>', methods=['POST'])
 @cross_origin()
 def submit_order(product_identifier):
-    print(product_identifier)
-    print(request.json)
     data = request.json
     details = {
         'engravings': data['engravings'],
+        'insert': data['insertCode'],
     }
     order = Order(
         product_identifier=product_identifier,
@@ -32,4 +31,4 @@ def submit_order(product_identifier):
     )
     db.session.add(order)
     db.session.commit()
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
