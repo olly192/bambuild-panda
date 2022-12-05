@@ -1,5 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 400;
+    font-style: normal;
+    src: url("/static/font/gilroy-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 300;
+    font-style: normal;
+    src: url("/static/font/gilroy-light.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 500;
+    font-style: normal;
+    src: url("/static/font/gilroy-medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 700;
+    font-style: normal;
+    src: url("/static/font/gilroy-bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 900;
+    font-style: normal;
+    src: url("/static/font/gilroy-heavy.woff2") format("woff2");
+}
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Gilroy', 'Inter', sans-serif;
 }

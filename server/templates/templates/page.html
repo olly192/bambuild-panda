@@ -1,0 +1,10 @@
+{% extends "templates/main.html" %}
+{% block page %}
+    {% include "components/navbar.html" %}
+    <div class="flex flex-row max-h-[calc(100vh-3rem)] h-[calc(100vh-3rem)] w-full overflow-hidden">
+        {% include "components/sidebar.html" %}
+        <div class="overflow-x-hidden overflow-y-scroll">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

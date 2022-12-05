@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 400;
+    font-style: normal;
+    src: url("/static/font/gilroy-regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 300;
+    font-style: normal;
+    src: url("/static/font/gilroy-light.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 500;
+    font-style: normal;
+    src: url("/static/font/gilroy-medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 700;
+    font-style: normal;
+    src: url("/static/font/gilroy-bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Gilroy";
+    font-weight: 900;
+    font-style: normal;
+    src: url("/static/font/gilroy-heavy.woff2") format("woff2");
+}
+
+body {
+    font-family: 'Gilroy', 'Inter', sans-serif;
+    @apply bg-dark-700 text-white;
+}
+
+.navbar {
+    @apply w-full h-12 bg-dark-900 border-b border-dark-600;
+    @apply flex flex-row items-center;
+}
+
+.navbar > a {
+    @apply flex flex-row items-center;
+    @apply h-12 mb-[-1px] pr-4;
+    @apply border-b border-dark-600;
+    @apply hover:bg-dark-800;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+.navbar > a.navbar-brand {
+    @apply pl-4
+}
+
+.navbar > a.active {
+    @apply border-b-4 border-primary-500;
+}
+
+.navbar > .navbar-divider {
+    @apply w-[1px] h-full mx-2 bg-dark-600;
+    @apply border-y-8 border-dark-900;
+}
+
+.sidebar {
+    @apply w-12 min-w-[3rem] bg-dark-800;
+    @apply overflow-x-hidden overflow-y-scroll;
+    @apply flex flex-col;
+    transition: min-width 0.2s ease-out;
+}
+
+.sidebar > a {
+    @apply flex flex-row items-center;
+    @apply hover:bg-dark-800;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+.sidebar > a.active {
+    @apply bg-dark-800 border-l-4 border-primary-500;
+}
+
+
+.navbar > a > i, .sidebar > a > i, .sidebar > button > i, .sidebar > div > a > i {
+    @apply w-12 min-w-[3rem] h-12 min-h-[3rem];
+    @apply flex justify-center items-center;
+}
+
+.sidebar > a.active > i {
+    @apply ml-[-4px];
+}
+
+.sidebar > button {
+    @apply w-full flex flex-row items-center;
+    @apply hover:bg-dark-800;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+.sidebar > button:after {
+    content: '\f078';
+    font-family: "Font Awesome 6 Sharp";
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    @apply w-12 min-w-[3rem] h-12 min-h-[3rem];
+    @apply flex justify-center items-center;
+    @apply ml-auto;
+    @apply transition-transform duration-200 ease-in-out;
+}
+
+.sidebar > button.active:after {
+    transform: rotate(180deg);
+}
+
+.sidebar > div {
+    @apply overflow-hidden;
+    transition: max-height 0.2s ease-out;
+    max-height: 0;
+}
+
+.sidebar > div > a {
+    @apply flex flex-row items-center;
+    @apply hover:bg-dark-800;
+    @apply transition-colors duration-100 ease-in-out;
+    @apply pl-12 h-12 min-h-[3rem];
+}
+
+
+.btn {
+    @apply w-12 h-12;
+    @apply flex items-center justify-center;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+.btn.btn-border {
+    @apply border;
+    @apply border-dark-600 hover:bg-dark-800 active:border-white;
+}
