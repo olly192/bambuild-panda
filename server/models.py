@@ -8,6 +8,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(256))
     email = db.Column(db.String(256), unique=True)
+    profile = db.Column(db.LargeBinary)
     hashed_password = db.Column(db.String(256))
     active = db.Column(db.Boolean, default=True)
     read_only = db.Column(db.Boolean, default=True)
@@ -18,6 +19,7 @@ class User(db.Model, UserMixin):
 class Order(db.Model):
     __tablename__ = 'order'
     id = db.Column(db.Integer, primary_key=True)
+    identifier = db.Column(db.String(256), unique=True, nullable=False)
     product_identifier = db.Column(db.String)
     details = db.Column(db.JSON)
     email = db.Column(db.String)

@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from os import environ, path
 from dotenv import load_dotenv
 
@@ -52,6 +53,7 @@ def create_app():
 
         # Create database tables for data models in models.py
         db.create_all()
+        migrate = Migrate(app, db)
 
         cors = CORS(app)
 
