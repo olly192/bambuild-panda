@@ -46,3 +46,11 @@ class Order(db.Model):
     shipping_details = db.Column(db.JSON)
     submitted = db.Column(db.DateTime, default=db.func.now())
     users = db.Column(db.ARRAY(db.Integer))
+
+
+class Image(db.Model):
+    __tablename__ = 'image'
+    id = db.Column(db.Integer, primary_key=True)
+    identifier = db.Column(db.String(256), unique=True, nullable=False)
+    image = db.Column(db.LargeBinary)
+    mimetype = db.Column(db.String(256))
