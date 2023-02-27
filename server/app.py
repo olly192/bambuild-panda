@@ -66,6 +66,14 @@ def create_app():
         def load_user(id):
             return User.query.get(int(id))
 
+        # Inject template values
+        @app.context_processor
+        def inject_template_values():
+            from server.models import Order
+            return {
+                'orders': Order.query.all(),
+            }
+
         return app
 
 

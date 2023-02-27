@@ -1,26 +1,9 @@
 <div id="sidebar" class="sidebar" style="min-width: 16rem;">
-    <a href="/">
-        <i class="fa-sharp fas fa-house"></i>
-        <span>Home</span>
+    <span class="text-2xl font-bold px-4 pt-2">Orders</span>
+    {% for sidebar_order in orders %}
+    <a href="/api/get-order-details/{{ sidebar_order.identifier }}" class="{{ "active" if order and order.identifier == sidebar_order.identifier }}">
+        <i class="fa-sharp fas fa-clipboard-list"></i>
+        <span>{{ sidebar_order.identifier }}</span>
     </a>
-    <a class="active" href="/">
-        <i class="fa-sharp fas fa-house"></i>
-        <span>Home</span>
-    </a>
-    <button class="sidebar-collapse">
-        <i class="fa-sharp fas fa-house"></i>
-        <span>Home</span>
-    </button>
-    <div>
-        <a href="/">
-            <span>Home</span>
-        </a>
-        <a class="active" href="/">
-            <span>Home</span>
-        </a>
-    </div>
-    <a href="/">
-        <i class="fa-sharp fas fa-house"></i>
-        <span>Home</span>
-    </a>
+    {% endfor %}
 </div>

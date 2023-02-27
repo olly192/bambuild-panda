@@ -4,28 +4,12 @@
     </button>
     <a href="/" class="navbar-brand">BamBuild Panda</a>
     <div class="navbar-divider"></div>
-    <a href="/">
+    <a href="/" class="{{ "active" if page == "orders" }}">
         <i class="fa-sharp fas fa-house"></i>
-        Home
+        Orders
     </a>
-    <a href="/" class="active">
-        <i class="fa-sharp fas fa-house"></i>
-        Home
-    </a>
-    <a href="/">
-        <i class="fa-sharp fas fa-house"></i>
-        Home
-    </a>
-    <a href="/">
-        <i class="fa-sharp fas fa-house"></i>
-        Home
-    </a>
-    <a href="/">
-        <i class="fa-sharp fas fa-house"></i>
-        Home
-    </a>
-    <a href="/">
-        <i class="fa-sharp fas fa-house"></i>
-        Home
+    <a href="/" class="{{ "active" if page == "order-details" }}">
+        <i class="fa-sharp fas fa-clipboard-list"></i>
+        Order Details
     </a>
 </div>

@@ -1,6 +1,7 @@
 from flask import Blueprint, flash, render_template, request, redirect, url_for
 from flask_login import current_user, login_required
 from server.app import db
+from server.models import Order
 
 views = Blueprint('views', __name__)
 
@@ -8,11 +9,8 @@ views = Blueprint('views', __name__)
 # Home page
 @views.route('/')
 def home():
-    return render_template("index.html", page="home")
-    if current_user.is_authenticated:
-        return render_template("index.html", current_user=current_user, page="home")
-    else:
-        return redirect(url_for('auth.login'))
+    orders = Order.query.all()
+    return render_template("index.html", page="orders")
 
 
 # Example page

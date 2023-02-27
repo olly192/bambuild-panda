@@ -15,15 +15,15 @@ api = Blueprint('api', __name__)
 @cross_origin()
 def create_order(product_identifier):
     data = request.json
-    details = {
-        'engravings': data['engravings'],
-        'insert': data['insertCode'],
-    }
     try:
         order = Order(
             identifier=generate_identifer(),
             product_identifier="lightbox-" + product_identifier,
-            details=details,
+            details={
+                'engravings': data['engravings'],
+                'insert': data['insertCode'],
+                'payment_method': int(data["paymentMethod"]),
+            },
             email=data['email'],
             firstname=data['firstName'],
             lastname=data['lastName'],
@@ -87,9 +87,9 @@ def link_order():
 def get_order_details(identifier):
     order = Order.query.filter_by(identifier=identifier).first()
     if order:
-        if order.details['image']:
+        if 'image' in order.details.keys() and order.details['image']:
             image = Image.query.filter_by(identifier=order.details['image']).first()
         else:
             image = None
-        return render_template("order_details.html", order=order, image=image)
+        return render_template("order_details.html", page="order-details", order=order, image=image)
     return {'error': 'Invalid identifier.'}, 400
