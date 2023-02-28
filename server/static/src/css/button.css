@@ -1,0 +1,61 @@
+.btn {
+    @apply min-w-[3rem] h-12;
+    @apply px-4 py-2;
+    @apply flex items-center;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+.btn.btn-sidebar {
+    @apply px-0;
+}
+
+.btn.btn-sm {
+    @apply min-w-[3rem] h-10;
+}
+
+.btn.btn-xs {
+    @apply min-w-[3rem] h-8;
+    @apply px-2 py-1;
+}
+
+.btn.btn-square {
+    @apply w-12 h-12;
+    @apply flex justify-center items-center;
+}
+
+.btn.btn-border,
+.btn.btn-border-primary,
+.btn.btn-border-secondary,
+.btn.btn-border-success,
+.btn.btn-border-info,
+.btn.btn-border-warning,
+.btn.btn-border-danger {
+    @apply border;
+    @apply border-dark-600 hover:bg-dark-800 active:border-white;
+}
+
+.btn.btn-nav-collapse {
+    @apply border-r border-dark-600 hover:bg-dark-800 active:border-white;
+}
+
+.btn.btn-nav-profile {
+    @apply border-l border-dark-600 hover:bg-dark-800 active:border-white;
+}
+
+.btn.btn-outline {
+    @apply hover:bg-dark-800 active:bg-dark-700;
+}
+
+.btn.btn-primary    { @apply bg-primary-700     hover:bg-primary-800    active:bg-primary-900;      }
+.btn.btn-secondary  { @apply bg-secondary-700   hover:bg-secondary-800  active:bg-secondary-900;    }
+.btn.btn-success    { @apply bg-success-500     hover:bg-success-600    active:bg-success-700       text-black; }
+.btn.btn-info       { @apply bg-info-500        hover:bg-info-600       active:bg-info-700;         }
+.btn.btn-warning    { @apply bg-warning-400     hover:bg-warning-500    active:bg-warning-600       text-black; }
+.btn.btn-danger     { @apply bg-danger-500      hover:bg-danger-600     active:bg-danger-700;       }
+
+.btn.btn-border-primary     { @apply text-primary-700     hover:border-primary-800    active:border-primary-900;    }
+.btn.btn-border-secondary   { @apply text-secondary-700   hover:border-secondary-800  active:border-secondary-900;  }
+.btn.btn-border-success     { @apply text-success-500     hover:border-success-600    active:border-success-700;    }
+.btn.btn-border-info        { @apply text-info-500        hover:border-info-600       active:border-info-700;       }
+.btn.btn-border-warning     { @apply text-warning-400     hover:border-warning-500    active:border-warning-600;    }
+.btn.btn-border-danger      { @apply text-danger-500      hover:border-danger-600     active:border-danger-700;     }

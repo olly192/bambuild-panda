@@ -1,3 +1,6 @@
+@import "./button.css";
+@import "./forms.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -131,14 +134,3 @@ body {
     @apply pl-12 h-12 min-h-[3rem];
 }
 
-
-.btn {
-    @apply w-12 h-12;
-    @apply flex items-center justify-center;
-    @apply transition-colors duration-100 ease-in-out;
-}
-
-.btn.btn-border {
-    @apply border;
-    @apply border-dark-600 hover:bg-dark-800 active:border-white;
-}

@@ -1,0 +1,125 @@
+.form-container {
+    @apply bg-dark-800 p-8 max-w-screen-md;
+}
+
+.form-container > form {
+    @apply flex flex-col gap-4;
+}
+
+.form-container > form > div.form-section {
+    @apply grid grid-cols-12;
+    @apply gap-2;
+}
+
+.form-container > form > div.form-section > h4 {
+    @apply col-span-full;
+}
+
+.form-container > form > div.form-section > label {
+    @apply flex flex-col;
+}
+
+.form-container > form > div.form-section > label > select {
+    @apply px-4;
+}
+
+
+/* Checkboxes */
+label.checkbox,
+label.gridjs-checkbox-container,
+div.treeselect-list__item-checkbox-container
+{
+    @apply m-4 h-4;
+    @apply flex justify-center items-center;
+}
+
+form label.checkbox {
+    @apply flex-row justify-start items-center;
+}
+
+label.checkbox > span.checkbox-label {
+    @apply ml-4;
+}
+
+label.checkbox-sm {
+    @apply m-0 h-6;
+}
+
+label.checkbox > input,
+label.gridjs-checkbox-container > input,
+div.treeselect-list__item-checkbox-container > input,
+div.treeselect-list__item-checkbox-container > span.treeselect-list__item-checkbox-icon > svg {
+    @apply hidden;
+}
+
+label.checkbox > span:not(.checkbox-label),
+label.gridjs-checkbox-container > span:not(.checkbox-label),
+div.treeselect-list__item-checkbox-container > span.treeselect-list__item-checkbox-icon {
+    @apply w-4 h-4;
+    @apply bg-dark-800 hover:bg-dark-700;
+    @apply flex justify-center items-center;
+    @apply outline outline-1 outline-white;
+}
+
+label.checkbox > input:checked + span:not(.checkbox-label),
+label.gridjs-checkbox-container > input:checked + span:not(.checkbox-label),
+div.treeselect-list__item--checked > div.treeselect-list__item-checkbox-container > span.treeselect-list__item-checkbox-icon {
+    @apply bg-primary-700 hover:bg-primary-800;
+    @apply outline-primary-700 hover:outline-primary-800;
+}
+
+label.checkbox > input:checked + span:not(.checkbox-label):after,
+label.gridjs-checkbox-container > input:checked + span:not(.checkbox-label):after,
+div.treeselect-list__item--checked > div.treeselect-list__item-checkbox-container > span.treeselect-list__item-checkbox-icon:after {
+    content: '\f00c';
+    font-family: "Font Awesome 6 Sharp";
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    @apply text-white text-xs;
+}
+
+div.treeselect-list__item--partial-checked > div.treeselect-list__item-checkbox-container > span.treeselect-list__item-checkbox-icon:after {
+    content: '\2d';
+    font-family: "Font Awesome 6 Sharp";
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    @apply text-white text-xs;
+}
+
+/* Inputs */
+form input, .gridjs-search > input, form textarea {
+    @apply px-4 py-2 bg-dark-700;
+    @apply hover:bg-dark-600 focus:bg-dark-600;
+    @apply font-normal outline-none;
+    @apply transition transition-colors duration-200 ease-in-out;
+}
+
+input.input-sm {
+    @apply px-2 py-1;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    @apply hidden;
+}
+
+select {
+    @apply h-10 bg-dark-700;
+    @apply px-2 py-1;
+}
+
+
+/* Spinner */
+.spinner {
+    @apply w-12 h-12 m-0 p-0;
+    @apply border-4 border-dark-400/50 border-t-dark-200;
+    @apply rounded-full animate-spin;
+}
+
+.spinner.spinner-primary    { @apply border-primary-900/50      border-t-primary-500    }
+.spinner.spinner-secondary  { @apply border-secondary-900/50    border-t-secondary-500  }
+.spinner.spinner-success    { @apply border-success-900/50      border-t-success-500    }
+.spinner.spinner-info       { @apply border-info-900/50         border-t-info-500       }
+.spinner.spinner-warning    { @apply border-warning-900/50      border-t-warning-500    }
+.spinner.spinner-danger     { @apply border-danger-900/50       border-t-danger-500     }

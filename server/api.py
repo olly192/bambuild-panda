@@ -5,7 +5,7 @@ from flask_cors import cross_origin
 
 from server.app import db
 from server.helper import generate_identifer
-from server.models import Order, Image
+from server.models import Order, Image, MarketOrder
 
 api = Blueprint('api', __name__)
 
@@ -93,3 +93,20 @@ def get_order_details(identifier):
             image = None
         return render_template("order_details.html", page="order-details", order=order, image=image)
     return {'error': 'Invalid identifier.'}, 400
+
+
+@api.route('/submit-market-order', methods=['POST'])
+@cross_origin()
+def submit_market_order():
+    data = request.form
+    market_order = MarketOrder(
+        payment_method=request.form.get("payment_method"),
+        order_items=json.loads(request.form.get("order_items")),
+        timestamp=request.form.get("timestamp"),
+        total=request.form.get("total"),
+        email=request.form.get("email") or None,
+    )
+    db.session.add(market_order)
+    db.session.commit()
+    print(data)
+    return "True", 200

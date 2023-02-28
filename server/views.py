@@ -9,8 +9,12 @@ views = Blueprint('views', __name__)
 # Home page
 @views.route('/')
 def home():
-    orders = Order.query.all()
     return render_template("index.html", page="orders")
+
+
+@views.route('/market')
+def market():
+    return render_template("market.html", page="market")
 
 
 # Example page

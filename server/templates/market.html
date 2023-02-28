@@ -1,0 +1,140 @@
+{% extends "templates/page.html" %}
+{% block content %}
+    <div class="p-4">
+        <div class="form-container">
+            <h1 class="text-6xl font-bold mb-4">New Market Order</h1>
+            <form method="post" id="order-form">
+                <div class="form-section">
+                    <label class="col-span-12">
+                        <span>Timestamp</span>
+                        <input type="datetime-local" name="timestamp" id="timestamp">
+                    </label>
+                    <label class="col-span-12">
+                        <span>Email</span>
+                        <input type="text" name="email" id="email">
+                    </label>
+                    <label class="col-span-12">
+                        <span>Payment Method</span>
+                        <select name="payment_method">
+                            <option value="cash">Cash</option>
+                            <option value="card">Card</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="form-section">
+                    <h4 class="text-3xl font-bold mb-4">Order Items</h4>
+                    <label class="col-span-7">
+                        <span>Item</span>
+                        <select id="order-item">
+                            <option value="Large Keyring">Large Keyring</option>
+                            <option value="Small Keyring">Small Keyring</option>
+                            <option value="Tote Bag">Tote Bag</option>
+                            <option value="Light Box">Light Box</option>
+                        </select>
+                    </label>
+                    <label class="col-span-4">
+                        <span>Quantity</span>
+                        <input type="number" id="order-qty">
+                    </label>
+                    <button id="addItem" class="btn btn-square btn-primary col-span-1" type="button">
+                        <i class="fa-sharp fa-plus"></i>
+                    </button>
+                    <table id="orderItems" class="col-span-12">
+                        <thead>
+                            <tr>
+                                <th class="w-1/4 text-left">Index</th>
+                                <th class="w-1/4 text-left">Item</th>
+                                <th class="w-1/4 text-left">Quantity</th>
+                                <th class="w-1/4 text-left">Price</th>
+                                <th class="w-1/4 text-left">Total</th>
+                                <th class="w-1/4 text-left">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Total</td>
+                                <td id="total-cell">£0.00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <button type="submit" class="btn btn-primary text-black">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const orderForm = document.getElementById('order-form');
+        let now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('timestamp').value = now.toISOString().slice(0,16);
+        let orderItems = []
+        let orderItemsTable = document.getElementById('orderItems');
+        let orderItemsBody = orderItemsTable.getElementsByTagName('tbody')[0];
+        let addItemButton = document.getElementById('addItem');
+        addItemButton.addEventListener('click', (event) => {
+            let item = document.getElementById("order-item").value;
+            let quantity = document.getElementById("order-qty").value;
+            let price = 0;
+            switch (item) {
+                case 'Light Box':
+                    price = 15.00;
+                    break;
+                case 'Large Keyring':
+                    price = 2.00;
+                    break;
+                case 'Small Keyring':
+                    price = 1.50;
+                    break;
+                case 'Tote Bag':
+                    price = 5.00;
+                    break;
+            }
+            let total = price * quantity;
+            orderItems.push({
+                item: item,
+                quantity: quantity,
+                price: price,
+                total: total
+            });
+            let row = orderItemsBody.insertRow(-1);
+            row.insertCell(0).innerHTML = orderItems.length.toString();
+            row.insertCell(1).innerHTML = item;
+            row.insertCell(2).innerHTML = quantity;
+            row.insertCell(3).innerHTML = '£' + price.toFixed(2);
+            row.insertCell(4).innerHTML = '£' + total.toFixed(2);
+            let removeCell = row.insertCell(5);
+            let removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.classList.add('btn', 'btn-square', 'btn-danger');
+            removeButton.innerHTML = '<i class="fa-sharp fa-xmark"></i>';
+            removeButton.addEventListener('click', () => {
+                orderItems.splice(orderItems.indexOf(item), 1);
+                orderItemsBody.deleteRow(row.rowIndex - 1);
+            });
+            removeCell.appendChild(removeButton);
+            let totalCell = document.getElementById('total-cell');
+            totalCell.innerHTML = '£' + orderItems.reduce((total, item) => total + item.total, 0).toFixed(2);
+            event.preventDefault()
+        });
+        orderForm.addEventListener('submit', (event) => {
+            let formData = new FormData(orderForm);
+            formData.append('order_items', JSON.stringify(orderItems));
+            formData.append('total', orderItems.reduce((total, item) => total + item.total, 0).toFixed(2));
+            fetch('/api/submit-market-order', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/market';
+                } else {
+                    alert('Error: ' + response.status);
+                }
+            });
+            event.preventDefault();
+        });
+    </script>
+{% endblock %}

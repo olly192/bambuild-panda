@@ -54,3 +54,16 @@ class Image(db.Model):
     identifier = db.Column(db.String(256), unique=True, nullable=False)
     image = db.Column(db.LargeBinary)
     mimetype = db.Column(db.String(256))
+
+
+class MarketOrder(db.Model):
+    __tablename__ = 'market_order'
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, default=db.func.now())
+    payment_method = db.Column(db.String(256), nullable=False)
+    order_items = db.Column(db.JSON, nullable=False)
+    total = db.Column(db.Float, nullable=False)
+    email = db.Column(db.String(256), nullable=True)
+
+
+
