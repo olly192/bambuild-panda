@@ -102,7 +102,6 @@ def submit_market_order():
     market_order = MarketOrder(
         payment_method=request.form.get("payment_method"),
         order_items=json.loads(request.form.get("order_items")),
-        timestamp=request.form.get("timestamp"),
         total=request.form.get("total"),
         email=request.form.get("email") or None,
     )

@@ -6,18 +6,14 @@
             <form method="post" id="order-form">
                 <div class="form-section">
                     <label class="col-span-12">
-                        <span>Timestamp</span>
-                        <input type="datetime-local" name="timestamp" id="timestamp">
-                    </label>
-                    <label class="col-span-12">
                         <span>Email</span>
                         <input type="text" name="email" id="email">
                     </label>
                     <label class="col-span-12">
                         <span>Payment Method</span>
                         <select name="payment_method">
-                            <option value="cash">Cash</option>
                             <option value="card">Card</option>
+                            <option value="cash">Cash</option>
                         </select>
                     </label>
                 </div>
@@ -72,9 +68,6 @@
 
     <script>
         const orderForm = document.getElementById('order-form');
-        let now = new Date();
-        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-        document.getElementById('timestamp').value = now.toISOString().slice(0,16);
         let orderItems = []
         let orderItemsTable = document.getElementById('orderItems');
         let orderItemsBody = orderItemsTable.getElementsByTagName('tbody')[0];
@@ -123,6 +116,7 @@
             removeButton.addEventListener('click', () => {
                 orderItems.splice(orderItems.indexOf(item), 1);
                 orderItemsBody.deleteRow(row.rowIndex - 1);
+                totalCell.innerHTML = '£' + orderItems.reduce((total, item) => total + item.total, 0).toFixed(2);
             });
             removeCell.appendChild(removeButton);
             let totalCell = document.getElementById('total-cell');
