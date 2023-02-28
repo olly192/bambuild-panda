@@ -24,7 +24,7 @@
 
                 <div class="form-section">
                     <h4 class="text-3xl font-bold mb-4">Order Items</h4>
-                    <label class="col-span-7">
+                    <label class="col-span-5">
                         <span>Item</span>
                         <select id="order-item">
                             <option value="Large Keyring">Large Keyring</option>
@@ -33,9 +33,13 @@
                             <option value="Light Box">Light Box</option>
                         </select>
                     </label>
-                    <label class="col-span-4">
+                    <label class="col-span-3">
                         <span>Quantity</span>
                         <input type="number" id="order-qty">
+                    </label>
+                    <label class="col-span-3">
+                        <span>Individual Price</span>
+                        <input type="number" id="order-price">
                     </label>
                     <button id="addItem" class="btn btn-square btn-primary col-span-1" type="button">
                         <i class="fa-sharp fa-plus"></i>
@@ -93,6 +97,11 @@
                     price = 5.00;
                     break;
             }
+            let priceField = document.getElementById("order-price");
+            if (priceField.value) {
+                price = parseFloat(priceField.value);
+            }
+            priceField.value = '';
             let total = price * quantity;
             orderItems.push({
                 item: item,
