@@ -6,7 +6,7 @@
             {% for order in orders %}
                 <li>
                     <a href="/api/get-order-details/{{ order.identifier }}">
-                        Order {{ order.identifier }}
+                        Order {{ order.identifier }} - {{ order.submitted }}
                     </a>
                 </li>
             {% endfor %}

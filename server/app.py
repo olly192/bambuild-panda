@@ -71,7 +71,7 @@ def create_app():
         def inject_template_values():
             from server.models import Order
             return {
-                'orders': Order.query.all(),
+                'orders': Order.query.order_by(Order.submitted.desc()).all(),
             }
 
         return app
