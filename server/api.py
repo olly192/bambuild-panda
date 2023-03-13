@@ -40,7 +40,7 @@ def create_order(product_identifier):
 
 @api.route('/order-image/<product_identifier>', methods=['POST'])
 @cross_origin()
-def order_keyring(product_identifier):
+def order_image(product_identifier):
     import base64
     try:
         image = Image(
@@ -66,6 +66,32 @@ def order_keyring(product_identifier):
     except KeyError:
         return {'error': 'Invalid options.'}, 400
     db.session.add(image)
+    db.session.add(order)
+    db.session.commit()
+    return json.dumps({'identifier': order.identifier}), 200, {'ContentType': 'application/json'}
+
+
+@api.route('/order/<product_identifier>', methods=['POST'])
+@cross_origin()
+def order(product_identifier):
+    try:
+        order = Order(
+            identifier=generate_identifer(),
+            product_identifier=product_identifier,
+            details={
+                'design': request.form.get("design"),
+                'instructions': request.form.get("instructions"),
+                'payment_method': int(request.form.get("paymentMethod"))
+            },
+            email=request.form.get("email"),
+            firstname=request.form.get("firstName"),
+            lastname=request.form.get("lastName"),
+            status=0,
+            shipping_method=int(request.form.get("shippingMethod")),
+            shipping_details=request.form.get("shippingDetails")
+        )
+    except KeyError:
+        return {'error': 'Invalid options.'}, 400
     db.session.add(order)
     db.session.commit()
     return json.dumps({'identifier': order.identifier}), 200, {'ContentType': 'application/json'}
@@ -99,9 +125,12 @@ def get_order_details(identifier):
 @cross_origin()
 def submit_market_order():
     data = request.form
+    items = json.loads(request.form.get("order_items"))
+    if request.form.get("notes"):
+        items.append({"NOTES": request.form.get("notes")})
     market_order = MarketOrder(
         payment_method=request.form.get("payment_method"),
-        order_items=json.loads(request.form.get("order_items")),
+        order_items=items,
         total=request.form.get("total"),
         email=request.form.get("email") or None,
     )
