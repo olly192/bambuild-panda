@@ -14,22 +14,31 @@ api = Blueprint('api', __name__)
 @api.route('/order-lightbox/<product_identifier>', methods=['POST'])
 @cross_origin()
 def create_order(product_identifier):
-    data = request.json
+    import base64
     try:
+        image = None
+        if request.files['image']:
+            image = Image(
+                identifier=generate_identifer(),
+                image=base64.b64encode(request.files['image'].read()),
+                mimetype=request.files['image'].mimetype
+            )
+            db.session.add(image)
         order = Order(
             identifier=generate_identifer(),
             product_identifier="lightbox-" + product_identifier,
             details={
-                'engravings': data['engravings'],
-                'insert': data['insertCode'],
-                'payment_method': int(data["paymentMethod"]),
+                'image': image.identifier if image else None,
+                'engravings': json.loads(request.form.get('engravings')),
+                'insert': request.form.get('insertCode'),
+                'payment_method': int(request.form.get("paymentMethod")),
             },
-            email=data['email'],
-            firstname=data['firstName'],
-            lastname=data['lastName'],
+            email=request.form.get('email'),
+            firstname=request.form.get('firstName'),
+            lastname=request.form.get('lastName'),
             status=0,
-            shipping_method=int(data['shippingMethod']),
-            shipping_details=data['shippingDetails']
+            shipping_method=int(request.form.get('shippingMethod')),
+            shipping_details=request.form.get('shippingDetails')
         )
     except KeyError:
         return {'error': 'Invalid options.'}, 400
