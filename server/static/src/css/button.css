@@ -59,3 +59,8 @@
 .btn.btn-border-info        { @apply text-info-500        hover:border-info-600       active:border-info-700;       }
 .btn.btn-border-warning     { @apply text-warning-400     hover:border-warning-500    active:border-warning-600;    }
 .btn.btn-border-danger      { @apply text-danger-500      hover:border-danger-600     active:border-danger-700;     }
+
+.btn[disabled] {
+    @apply bg-dark-700 text-dark-300 cursor-not-allowed;
+    @apply hover:bg-dark-700;
+}

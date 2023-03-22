@@ -299,6 +299,19 @@
   border-color: rgb(186 86 86 / var(--tw-border-opacity));
 }
 
+.btn[disabled] {
+  cursor: not-allowed;
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 33 41 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(146 158 176 / var(--tw-text-opacity));
+}
+
+.btn[disabled]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 33 41 / var(--tw-bg-opacity));
+}
+
 .form-container {
   max-width: 768px;
   --tw-bg-opacity: 1;

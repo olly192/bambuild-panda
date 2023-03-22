@@ -36,7 +36,7 @@
                     </label>
                     <label class="col-span-3">
                         <span>Quantity</span>
-                        <input type="number" id="order-qty">
+                        <input type="number" id="order-qty" value="1">
                     </label>
                     <label class="col-span-3">
                         <span>Individual Price</span>
@@ -66,7 +66,7 @@
                     </table>
                 </div>
 
-                <button type="submit" class="btn btn-primary text-black">Submit</button>
+                <button id="submit-button" disabled type="submit" class="btn btn-primary text-black">Submit</button>
             </form>
         </div>
     </div>
@@ -78,8 +78,9 @@
         let orderItemsBody = orderItemsTable.getElementsByTagName('tbody')[0];
         let addItemButton = document.getElementById('addItem');
         addItemButton.addEventListener('click', (event) => {
-            let item = document.getElementById("order-item").value;
-            let quantity = document.getElementById("order-qty").value;
+            document.getElementById("submit-button").disabled = false
+            let item = document.getElementById("order-item").value
+            let quantity = document.getElementById("order-qty").value
             let price = 0;
             switch (item) {
                 case 'Light Box':
