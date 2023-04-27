@@ -1,19 +1,11 @@
 <div class="navbar">
-    <button id="sidebar-toggle" class="btn btn-border border-t-0 border-l-0 border-b-0">
-        <i class="fa-sharp fas fa-xmark"></i>
-    </button>
-    <a href="/" class="navbar-brand">BamBuild Panda</a>
-    <div class="navbar-divider"></div>
-    <a href="/" class="{{ "active" if page == "orders" }}">
-        <i class="fa-sharp fas fa-house"></i>
-        Orders
-    </a>
-    <a href="/" class="{{ "active" if page == "order-details" }}">
-        <i class="fa-sharp fas fa-clipboard-list"></i>
-        Order Details
-    </a>
-    <a href="/market" class="{{ "active" if page == "market" }}">
-        <i class="fa-sharp fas fa-shop"></i>
-        Market Order
-    </a>
+    <div class="nav-container flex">
+        <button id="sidebar-toggle" class="btn btn-square btn-nav-collapse">
+            <i class="fa-sharp fa-xmark"></i>
+        </button>
+        <a href="/" class="navbar-brand">BamBuild Panda</a>
+    </div>
+    <div class="nav-container hidden lg:flex">
+        {% include "components/navitems.html" %}
+    </div>
 </div>

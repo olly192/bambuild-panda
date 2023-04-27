@@ -1,0 +1,168 @@
+.navbar {
+    @apply w-full h-12 bg-dark-900 border-b border-dark-600;
+    @apply flex flex-row items-center justify-between;
+}
+
+.navbar > .nav-container {
+    @apply flex-row items-center;
+}
+
+.navbar > .nav-container > a, .navbar > .nav-container > button {
+    @apply flex flex-row items-center;
+    @apply h-12 mb-[-1px] pr-4;
+    @apply border-b border-dark-600;
+    @apply hover:bg-dark-800;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+.navbar > .nav-container > a.navbar-brand {
+    @apply pl-4
+}
+
+.navbar > .nav-container > a.active, .navbar > .nav-container > button.active {
+    @apply border-b-4 border-primary-500;
+}
+
+.navbar > .nav-container > a.active > * {
+    @apply mb-[-4px];
+}
+
+.navbar > .nav-container > #sidebar-toggle {
+    @apply min-w-[3rem] min-h-[3rem];
+}
+
+
+
+.nav-dropdown-end {
+    @apply absolute right-0 top-[3rem] z-50;
+    @apply bg-dark-900 border-b border-l border-dark-600;
+    width: calc(100vw - 3rem);
+    @apply sm:min-w-[20rem] sm:max-w-[20rem];
+    @apply overflow-y-hidden opacity-0;
+    transition: max-height 0.2s ease-out;
+}
+
+.nav-dropdown-end > div.dropdown-header {
+    @apply px-4 py-2;
+    @apply bg-dark-800;
+}
+
+.nav-dropdown-end > a, .nav-dropdown-end > button {
+    @apply flex flex-row items-center;
+    @apply hover:bg-dark-800;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+.nav-dropdown-end > a > i, .nav-dropdown-end > a > i, .nav-dropdown-end > button > i {
+    @apply w-12 min-w-[3rem] h-12 min-h-[3rem];
+    @apply flex justify-center items-center;
+}
+
+.nav-dropdown-end > a.active {
+    @apply bg-dark-800 border-l-4 border-primary-500;
+}
+
+.nav-dropdown-end > a.active > i {
+    @apply ml-[-4px];
+}
+
+
+.sidebar {
+    @apply w-12 min-w-[3rem] bg-dark-800;
+    @apply overflow-x-hidden overflow-y-scroll;
+    @apply flex flex-col;
+    @apply absolute top-0 bottom-0 left-0 lg:relative lg:top-0 z-50;
+    transition: min-width 0.2s ease-out;
+}
+
+.sidebar::-webkit-scrollbar {
+    @apply hidden;
+}
+
+.sidebar > a, .sidebar > .sidebar-nav > a {
+    @apply flex flex-row items-center;
+    @apply hover:bg-dark-800;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+.sidebar > a.active, .sidebar > .sidebar-nav > a.active {
+    @apply bg-dark-800 border-l-4 border-primary-500;
+}
+
+
+.navbar > .nav-container > a > i, .sidebar > a > i, .sidebar > button > i, .sidebar > div > a > i {
+    @apply w-12 min-w-[3rem] h-12 min-h-[3rem];
+    @apply flex justify-center items-center;
+}
+
+#nav-dropdown-button > i {
+    @apply mr-3 h-12 min-h-[3rem];
+    @apply flex justify-center items-center;
+}
+
+#nav-dropdown-button > span {
+    line-height: 100%;
+}
+
+.sidebar > a.active > i, .sidebar > .sidebar-nav > a.active > i {
+    @apply ml-[-4px];
+}
+
+.sidebar > * > span {
+    @apply text-clip whitespace-nowrap;
+}
+
+.sidebar > button {
+    @apply w-full flex flex-row items-center;
+    @apply hover:bg-dark-800;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+.sidebar > button.sidebar-collapse:after {
+    content: '\f078';
+    font-family: "Font Awesome 6 Sharp";
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    @apply w-12 min-w-[3rem] h-12 min-h-[3rem];
+    @apply flex justify-center items-center;
+    @apply ml-auto;
+    @apply transition-transform duration-200 ease-in-out;
+}
+
+.sidebar > button.sidebar-collapse.active:after {
+    transform: rotate(180deg);
+}
+
+
+.sidebar > div:not(.sidebar-nav, .sidebar-options, .sidebar-divider) {
+    @apply overflow-hidden;
+    transition: min-height 0.2s ease-out;
+    height: 0;
+    min-height: 0;
+}
+
+.sidebar > div:not(.sidebar-nav, .sidebar-options, .sidebar-divider) > a {
+    @apply flex flex-row items-center;
+    @apply pl-4 h-12 min-h-[3rem];
+}
+
+.sidebar > a:hover, .sidebar > button:hover, .sidebar > div > a:hover {
+    @apply bg-dark-900;
+    @apply transition-colors duration-100 ease-in-out;
+}
+
+
+.vertical-divider {
+    @apply w-[1px] mx-2 my-4;
+}
+
+.sidebar-divider {
+    @apply h-[1px] my-2 mx-4;
+    @apply bg-dark-600;
+}
+
+#footer {
+    @apply w-full h-12 bg-dark-900;
+    @apply flex flex-row items-center justify-center;
+}

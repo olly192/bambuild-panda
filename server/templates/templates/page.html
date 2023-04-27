@@ -1,10 +1,12 @@
 {% extends "templates/main.html" %}
 {% block page %}
     {% include "components/navbar.html" %}
-    <div class="flex flex-row max-h-[calc(100vh-3rem)] h-[calc(100vh-3rem)] w-full overflow-hidden">
+    <div class="flex flex-row max-h-[calc(100vh-3rem)] h-[calc(100vh-3rem)] w-full overflow-hidden relative">
         {% include "components/sidebar.html" %}
-        <div class="overflow-x-hidden overflow-y-scroll">
-            {% block content %}{% endblock %}
+        <div class="ml-12 lg:ml-0 overflow-x-hidden overflow-y-scroll w-full">
+            <div class="min-h-[calc(100vh-6rem)]">
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </div>
 {% endblock %}

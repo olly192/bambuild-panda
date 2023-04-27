@@ -1,9 +1,12 @@
-<div id="sidebar" class="sidebar" style="min-width: 16rem;">
-    <span class="text-2xl font-bold px-4 pt-2">Orders</span>
+<div id="sidebar" class="sidebar" style="min-width: 16rem">
+    <div class="sidebar-nav bg-dark-900 lg:hidden py-4 mb-4">
+        {% include "components/navitems.html" %}
+    </div>
+    <span class="text-2xl font-bold w-64 px-4 pt-2 text-center">Orders</span>
     {% for sidebar_order in orders %}
-    <a href="/api/get-order-details/{{ sidebar_order.identifier }}" class="{{ "active" if order and order.identifier == sidebar_order.identifier }}">
-        <i class="fa-sharp fas fa-clipboard-list"></i>
-        <span>{{ sidebar_order.identifier }}</span>
-    </a>
+        <a href="/api/get-order-details/{{ sidebar_order.identifier }}" class="{{ "active" if order and order.identifier == sidebar_order.identifier }}">
+            <i class="fa-sharp fas fa-clipboard-list"></i>
+            <span>{{ sidebar_order.identifier }}</span>
+        </a>
     {% endfor %}
 </div>

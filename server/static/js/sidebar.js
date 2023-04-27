@@ -1,29 +1,31 @@
 const sidebar = document.getElementById("sidebar")
 const sidebarToggle = document.getElementById("sidebar-toggle")
+let sidebarCollapse = document.getElementsByClassName("sidebar-collapse")
+let sidebarOpen = true
+function setSidebar(open) {
+    if (open){
+        sidebar.style.minWidth = "16rem"
+        sidebarToggle.children[0].classList.remove("fa-bars")
+        sidebarToggle.children[0].classList.add("fa-xmark")
+    } else {
+        sidebar.style.minWidth = null
+        for (let i = 0; i < sidebarCollapse.length; i++) {
+            sidebarCollapse[i].classList.remove("active")
+            sidebarCollapse[i].nextElementSibling.style.minHeight = null
+        }
+        sidebarToggle.children[0].classList.add("fa-bars")
+        sidebarToggle.children[0].classList.remove("fa-xmark")
+    }
+    sidebarOpen = open
+}
 
 if (sidebar && sidebarToggle) {
-    console.log("sidebar and sidebarToggle exist")
-    sidebarToggle.addEventListener("click", () => {
-        if (sidebar.style.minWidth){
-            sidebar.style.minWidth = null;
-        } else {
-            sidebar.style.minWidth = "16rem";
-        }
-        sidebarToggle.children[0].classList.toggle("fa-bars")
-        sidebarToggle.children[0].classList.toggle("fa-xmark")
-    })
-
-    let sidebarCollapse = document.getElementsByClassName("sidebar-collapse");
-
-    for (let i = 0; i < sidebarCollapse.length; i++) {
-        sidebarCollapse[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            let content = this.nextElementSibling;
-            if (content.style.maxHeight){
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
+    sidebar.style.transition = "none"
+    if (window.innerWidth < 1024) {
+        setSidebar(false)
+    } else {
+        setSidebar(true)
     }
+    sidebar.style.transition = null
+    sidebarToggle.addEventListener("click", () => setSidebar(!sidebarOpen))
 }
